@@ -1,36 +1,33 @@
 package view
 
 import javafx.geometry.Pos
-import javafx.scene.paint.Color
-import javafx.scene.text.FontWeight
 import tornadofx.*
-import java.net.URI
 
-class MainView : View("My View") {
+class MainView : View("Database viewer") {
 
     override val root = vbox {
-        title = "Database viewer"
+        addClass(MainStyle.regularView)
+        style(append = true) {
+            spacing = 20.pt
+        }
 
         vboxConstraints {
             alignment = Pos.CENTER
         }
 
         label("Database viewer") {
-            style {
-                fontSize = 20.pt
+            addClass(MainStyle.titleText)
+            style(append = true) {
                 fontFamily = "Arial Black"
             }
         }
 
         label("Select action") {
-            style {
-                paddingTop = 32
-                fontSize = 14.pt
-            }
+            addClass(MainStyle.regularText)
         }
 
-        hbox {
-            hboxConstraints {
+        vbox {
+            vboxConstraints {
                 alignment = Pos.CENTER
             }
 
@@ -39,12 +36,16 @@ class MainView : View("My View") {
                 spacing = 10.pt
             }
 
-            button("One") {
-
+            button("Employees with position") {
+                addClass(MainStyle.regularButton)
             }
 
-            button("Two") {
+            button("Employees by department") {
+                addClass(MainStyle.regularButton)
+            }
 
+            button("Search employment history") {
+                addClass(MainStyle.regularButton)
             }
         }
 
