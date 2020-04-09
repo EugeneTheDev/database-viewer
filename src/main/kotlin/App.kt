@@ -1,5 +1,7 @@
 import javafx.scene.Scene
 import javafx.scene.paint.Color
+import javafx.scene.text.FontPosture
+import javafx.scene.text.FontWeight
 import tornadofx.*
 import view.MainView
 
@@ -23,11 +25,14 @@ class MainStyle : Stylesheet() {
         val titleText by cssclass()
         val regularText by cssclass()
         val regularButton by cssclass()
+        val regularTable by cssclass()
+
+        private val mainColor = c("#373737")
     }
 
     init {
         regularView {
-            backgroundColor += c("#373737")
+            backgroundColor += mainColor
         }
 
         titleText {
@@ -50,5 +55,35 @@ class MainStyle : Stylesheet() {
                 borderWidth += box(1.pt)
             }
         }
+
+        regularTable {
+            borderColor += box(mainColor)
+            backgroundColor += mainColor
+
+            tableCell {
+                textFill = Color.WHITE
+                borderColor += box(Color.DARKGRAY)
+            }
+
+            tableColumn {
+                label {
+                    backgroundColor += Color.GRAY
+                    textFill = Color.WHITE
+                    fontSize = 12.pt
+                }
+            }
+
+            tableRowCell {
+                backgroundColor += mainColor
+                and(selected) {
+                    backgroundColor += Color.SLATEGRAY
+                }
+            }
+
+            scrollBar {
+                backgroundColor += Color.DIMGREY
+            }
+        }
+
     }
 }

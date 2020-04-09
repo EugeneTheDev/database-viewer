@@ -38,6 +38,9 @@ class MainView : View("Database viewer") {
 
             button("Employees with position") {
                 addClass(MainStyle.regularButton)
+                action {
+                    replaceWith<EmployeesWithPositionView>()
+                }
             }
 
             button("Employees by department") {
