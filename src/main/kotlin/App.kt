@@ -1,12 +1,13 @@
+import javafx.geometry.Pos
 import javafx.scene.Scene
 import javafx.scene.paint.Color
-import javafx.scene.text.FontPosture
-import javafx.scene.text.FontWeight
+import org.jetbrains.exposed.sql.Database
 import tornadofx.*
 import view.MainView
 
 
 fun main(args: Array<String>) {
+    Database.connect("jdbc:postgresql://${args[0]}/${args[1]}", user = args[2], password = args[3])
     launch<MyApp>(args)
 }
 
@@ -16,7 +17,7 @@ class MyApp : App(MainView::class, MainStyle::class) {
         reloadStylesheetsOnFocus()
     }
 
-    override fun createPrimaryScene(view: UIComponent) = Scene(view.root, 800.0, 600.0)
+    override fun createPrimaryScene(view: UIComponent) = Scene(view.root, 1000.0, 600.0)
 }
 
 class MainStyle : Stylesheet() {
@@ -57,12 +58,18 @@ class MainStyle : Stylesheet() {
         }
 
         regularTable {
-            borderColor += box(mainColor)
+            borderColor += box(Color.GRAY)
+            borderWidth += box(2.pt)
             backgroundColor += mainColor
 
             tableCell {
                 textFill = Color.WHITE
                 borderColor += box(Color.DARKGRAY)
+                alignment = Pos.CENTER
+
+                and(empty) {
+                    borderWidth += box(0.pt)
+                }
             }
 
             tableColumn {

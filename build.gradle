@@ -1,5 +1,5 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.3.41'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.60'
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.8'
 }
@@ -9,17 +9,37 @@ version '1.0'
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 
-    implementation 'org.openjfx:javafx:11'
+    // OpenJavaFx
+    implementation 'org.openjfx:javafx:14'
+
+    // TornadoFx
     implementation 'no.tornado:tornadofx:1.7.17'
+
+    // Exposed SQL
+    implementation 'org.jetbrains.exposed:exposed-core:0.23.1'
+    implementation 'org.jetbrains.exposed:exposed-dao:0.23.1'
+    implementation 'org.jetbrains.exposed:exposed-jdbc:0.23.1'
+    implementation 'org.jetbrains.exposed:exposed-java-time:0.23.1'
+
+    // Postgres driver
+    implementation 'org.postgresql:postgresql:42.2.11'
+
+    // Logger
+    implementation 'org.slf4j:slf4j-simple:1.7.30'
 }
 
 javafx {
     modules = [ 'javafx.controls' ]
+}
+
+configurations.all {
+    exclude module: 'slf4j-log4j12'
 }
 
 mainClassName = "AppKt"

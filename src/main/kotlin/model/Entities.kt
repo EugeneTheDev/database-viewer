@@ -1,6 +1,14 @@
 package model
 
-data class EmployeeWithPosition(
+import java.time.LocalDate
+
+
+data class EmployeeWithSalary(
+    val tabNumber: Int,
     val name: String,
-    val gender: Char
+    val gender: Char,
+    val inn: String,
+    val birthDate: LocalDate,
+    val position: String,
+    val salary: Int
 )

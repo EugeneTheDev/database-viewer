@@ -36,10 +36,10 @@ class MainView : View("Database viewer") {
                 spacing = 10.pt
             }
 
-            button("Employees with position") {
+            button("Employees with salary") {
                 addClass(MainStyle.regularButton)
                 action {
-                    replaceWith<EmployeesWithPositionView>()
+                    replaceWith<EmployeesWithSalaryView>()
                 }
             }
 
