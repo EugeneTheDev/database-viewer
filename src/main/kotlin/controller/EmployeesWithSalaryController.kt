@@ -6,7 +6,7 @@ import tornadofx.Controller
 import tornadofx.observable
 
 class EmployeesWithSalaryController : Controller() {
-    var data = mutableListOf<EmployeeWithSalary>().observable()
+    val data = mutableListOf<EmployeeWithSalary>().observable()
 
     fun loadData() = runAsync {
         data.let {

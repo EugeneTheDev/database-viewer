@@ -20,7 +20,7 @@ class EmployeesWithSalaryView : View("Employees with position") {
         }
 
         hbox {
-            vboxConstraints {
+            hboxConstraints {
                 alignment = Pos.CENTER
             }
 
@@ -48,13 +48,13 @@ class EmployeesWithSalaryView : View("Employees with position") {
                 vgrow = Priority.ALWAYS
             }
             addClass(MainStyle.regularTable)
-            readonlyColumn("Tab number", EmployeeWithSalary::tabNumber).pctWidth(12)
-            readonlyColumn("Name", EmployeeWithSalary::name).pctWidth(20)
-            readonlyColumn("Gender", EmployeeWithSalary::gender).pctWidth(8)
-            readonlyColumn("INN", EmployeeWithSalary::inn).pctWidth(15)
-            readonlyColumn("Birth date", EmployeeWithSalary::birthDate).pctWidth(15)
-            readonlyColumn("Position", EmployeeWithSalary::position).pctWidth(20)
-            readonlyColumn("Salary", EmployeeWithSalary::salary).pctWidth(10)
+            readonlyColumn("Tab number", EmployeeWithSalary::tabNumber)
+            readonlyColumn("Name", EmployeeWithSalary::name)
+            readonlyColumn("Gender", EmployeeWithSalary::gender)
+            readonlyColumn("INN", EmployeeWithSalary::inn)
+            readonlyColumn("Birth date", EmployeeWithSalary::birthDate)
+            readonlyColumn("Position", EmployeeWithSalary::position)
+            readonlyColumn("Salary", EmployeeWithSalary::salary)
             columnResizePolicy = TableView.CONSTRAINED_RESIZE_POLICY
         }
 

@@ -22,6 +22,20 @@ object AppDatabase {
         }
     }
 
+    fun getEmployeesWithDepartment() = tx {
+        Employee.innerJoin(Department).selectAll().map {
+            EmployeeWithDepartment(
+                tabNumber = it[Employee.tabNumber],
+                name = it[Employee.name],
+                gender = it[Employee.gender],
+                inn = it[Employee.inn],
+                birthDate = it[Employee.birthDate],
+                position = it[Employee.position],
+                department = it[Department.departmentName]
+            )
+        }
+    }
+
 }
 
 private fun <T> tx(action: Transaction.() -> T) = transaction {
