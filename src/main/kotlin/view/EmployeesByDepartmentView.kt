@@ -10,74 +10,41 @@ import tornadofx.*
 class EmployeesByDepartmentView : View("Employees by department") {
     private val controller: EmployeesByDepartmentController by inject()
 
-    override val root = vbox {
-        addClass(MainStyle.regularView)
-
-        vboxConstraints {
-            alignment = Pos.TOP_LEFT
-            padding = insets(10.0)
-            spacing = 20.0
-
-        }
-
+    override val root = commonView {
         hbox {
             hboxConstraints {
-                alignment = Pos.CENTER
+                spacing = 10.0
+                alignment = Pos.CENTER_LEFT
             }
 
-            label("Employees by department") {
-                addClass(MainStyle.titleText)
+            label("Department") {
+                addClass(MainStyle.regularText)
             }
 
-            region {
-                style {
-                    hgrow = Priority.ALWAYS
-                }
+            label(controller.numberOfDepartments) {
+                addClass(MainStyle.regularText)
             }
 
-            button("Back") {
+            button("<") {
                 addClass(MainStyle.regularButton)
-
                 action {
-                    replaceWith<MainView>()
+                    controller.onClickPrevious()
                 }
+                disableProperty().bind(controller.prevButtonDisabled)
+            }
+
+            label(controller.currentDepartment) {
+                addClass(MainStyle.regularText)
+            }
+
+            button(">") {
+                addClass(MainStyle.regularButton)
+                action {
+                    controller.onClickNext()
+                }
+                disableProperty().bind(controller.nextButtonDisabled)
             }
         }
-
-         hbox {
-             hboxConstraints {
-                 spacing = 10.0
-                 alignment = Pos.CENTER_LEFT
-             }
-
-             label("Department") {
-                 addClass(MainStyle.regularText)
-             }
-
-             label(controller.numberOfDepartments) {
-                 addClass(MainStyle.regularText)
-             }
-
-             button("<") {
-                 addClass(MainStyle.regularButton)
-                 action {
-                     controller.onClickPrevious()
-                 }
-                 disableProperty().bind(controller.prevButtonDisabled)
-             }
-
-             label(controller.currentDepartment) {
-                 addClass(MainStyle.regularText)
-             }
-
-             button(">") {
-                 addClass(MainStyle.regularButton)
-                 action {
-                     controller.onClickNext()
-                 }
-                 disableProperty().bind(controller.nextButtonDisabled)
-             }
-         }
 
         tableview(controller.data) {
             style(append = true) {
