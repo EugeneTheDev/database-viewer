@@ -12,3 +12,15 @@ Run it with gradle
 ```
 ./gradlew run --args='<host:port> <database> <user> <password>'
 ```
+
+Or build it
+```
+./graldew build
+```
+
+Then run
+```
+java -jar ./path/to/<file-name>.jar <host:port> <database> <user> <password>
+```
+
+I've already build it, check [Releases](https://github.com/EugeneTheDev/database-viewer/releases)
