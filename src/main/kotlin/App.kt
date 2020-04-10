@@ -27,6 +27,7 @@ class MainStyle : Stylesheet() {
         val regularText by cssclass()
         val regularButton by cssclass()
         val regularTable by cssclass()
+        val regularForm by cssclass()
 
         private val mainColor = c("#373737")
     }
@@ -92,5 +93,30 @@ class MainStyle : Stylesheet() {
             }
         }
 
+        regularForm {
+            fieldset {
+                legend {
+                    textFill = Color.WHITE
+                    fontSize = 16.pt
+                }
+
+                field {
+                    labelContainer {
+                        label {
+                            textFill = Color.WHITE
+                            fontSize = 12.pt
+                        }
+                    }
+
+                    inputContainer {
+                        textField {
+                            backgroundColor += Color.DIMGREY
+                            textFill = Color.WHITE
+                            fontSize = 12.pt
+                        }
+                    }
+                }
+            }
+        }
     }
 }

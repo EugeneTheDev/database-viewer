@@ -22,3 +22,11 @@ data class EmployeeWithDepartment(
     val position: String,
     val department: String
 )
+
+data class EmploymentHistoryResult(
+    val tabNumber: Int,
+    val employeeName: String,
+    val position: String,
+    val department: String,
+    val hireDate: LocalDate
+)

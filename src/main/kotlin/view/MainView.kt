@@ -52,6 +52,9 @@ class MainView : View("Database viewer") {
 
             button("Search employment history") {
                 addClass(MainStyle.regularButton)
+                action {
+                    replaceWith<SearchEmploymentHistoryView>()
+                }
             }
         }
 

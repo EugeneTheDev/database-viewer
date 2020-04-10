@@ -1,9 +1,6 @@
 package model
 
-import org.jetbrains.exposed.sql.StdOutSqlLogger
-import org.jetbrains.exposed.sql.Transaction
-import org.jetbrains.exposed.sql.addLogger
-import org.jetbrains.exposed.sql.selectAll
+import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 
 object AppDatabase {
@@ -34,6 +31,28 @@ object AppDatabase {
                 department = it[Department.departmentName]
             )
         }
+    }
+
+    fun searchEmploymentHistory(tabNumber: Int? = null, name: String? = null) = tx {
+        Employee.innerJoin(EmploymentHistory, onColumn = { Employee.tabNumber }, otherColumn = { employee })
+            .innerJoin(Department, onColumn = { EmploymentHistory.department }, otherColumn = { id })
+            .select {
+                (tabNumber?.let { Employee.tabNumber.eq(it) } ?: Op.TRUE) and
+                (name?.let { Employee.name like "%$it%" } ?: Op.TRUE)
+            }
+            .orderBy(
+                Pair(Employee.tabNumber, SortOrder.ASC),
+                Pair(EmploymentHistory.hireDate, SortOrder.DESC)
+            )
+            .map {
+                EmploymentHistoryResult(
+                    tabNumber = it[Employee.tabNumber],
+                    employeeName = it[Employee.name],
+                    position = it[EmploymentHistory.position],
+                    department = it[Department.departmentName],
+                    hireDate = it[EmploymentHistory.hireDate]
+                )
+            }
     }
 
 }

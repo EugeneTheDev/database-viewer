@@ -29,3 +29,10 @@ object Department : Table() {
 
     override val primaryKey = PrimaryKey(id)
 }
+
+object EmploymentHistory : Table("employment_history") {
+    val employee = integer("employee") references Employee.tabNumber
+    val department = integer("department") references Department.id
+    val position = varchar("position", 64) references Position.positionName
+    val hireDate = date("hire_date")
+}
